@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Draggable } from "../components/Draggable";
+import { Drag } from "../components/Draggable";
 
 export default function Home() {
   return (
@@ -14,14 +14,6 @@ export default function Home() {
           />
         </div>
         <div className="absolute top-0 left-0 w-screen h-screen">
-          <Draggable>
-            <iframe
-              src="https://open.spotify.com/embed/track/1LIvdWNdKmHvU0FJvw2diN?utm_source=generator&theme=0"
-              height="250"
-              allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-              loading="lazy"
-            ></iframe>
-          </Draggable>
         </div>
       </main>
     </>
