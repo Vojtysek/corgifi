@@ -1,5 +1,3 @@
-"use client";
-
 import { useEffect, useRef } from "react";
 
 interface DraggableProps {
@@ -7,69 +5,60 @@ interface DraggableProps {
 }
 
 export const Draggable: React.FC<DraggableProps> = ({ children }) => {
-  const containerref = useRef<HTMLDivElement>(null);
-  const boxref = useRef<HTMLDivElement>(null);
-
-  const isclicked = useRef<boolean>(false);
-
-  const coords = useRef<{
-    startx: number;
-    starty: number;
-    lastx: number;
-    lasty: number;
-  }>({
-    startx: 0,
-    starty: 0,
-    lastx: 0,
-    lasty: 0,
+  const relativeRef = useRef<HTMLDivElement>(null);
+  const absoluteRef = useRef<HTMLDivElement>(null);
+  const isClicked = useRef<boolean>(false);
+  const coords = useRef<{ x0: number; y0: number; x1: number; y1: number }>({
+    x0: 0,
+    y0: 0,
+    x1: 0,
+    y1: 0,
   });
 
   useEffect(() => {
-    if (!boxref.current || !containerref.current) return;
+    const box = relativeRef.current;
+    const container = absoluteRef.current;
 
-    const box = boxref.current;
-    const container = containerref.current;
+    if (!box || !container) return;
 
-    const onmousedown = (e: MouseEvent) => {
-      isclicked.current = true;
-      coords.current.startx = e.clientX;
-      coords.current.starty = e.clientY;
+    const handleMouseDown = (e: MouseEvent) => {
+      isClicked.current = true;
+      coords.current.x0 = e.clientX;
+      coords.current.y0 = e.clientY;
     };
 
-    const onmouseup = (e: MouseEvent) => {
-      isclicked.current = false;
-      coords.current.lastx = box.offsetLeft;
-      coords.current.lasty = box.offsetTop;
+    const handleMouseUp = () => {
+      isClicked.current = false;
+      coords.current.x1 = box.offsetLeft;
+      coords.current.y1 = box.offsetTop;
     };
 
-    const onmousemove = (e: MouseEvent) => {
-      if (!isclicked.current) return;
+    const handleMouseMove = (e: MouseEvent) => {
+      if (!isClicked.current) return;
 
-      const nextx = e.clientX - coords.current.startx + coords.current.lastx;
-      const nexty = e.clientY - coords.current.starty + coords.current.lasty;
+      const nextX = e.clientX - coords.current.x0 + coords.current.x1;
+      const nextY = e.clientY - coords.current.y0 + coords.current.y1;
 
-      box.style.top = `${nexty}px`;
-      box.style.left = `${nextx}px`;
+      box.style.top = `${nextY}px`;
+      box.style.left = `${nextX}px`;
     };
 
-    box.addEventListener("mousedown", onmousedown);
-    box.addEventListener("mouseup", onmouseup);
-    container.addEventListener("mousemove", onmousemove);
-    container.addEventListener("mouseleave", onmouseup);
+    box.addEventListener("mousedown", handleMouseDown);
+    box.addEventListener("mouseup", handleMouseUp);
+    container.addEventListener("mousemove", handleMouseMove);
+    container.addEventListener("mouseleave", handleMouseUp);
 
-    const cleanup = () => {
-      box.removeEventListener("mousedown", onmousedown);
-      box.removeEventListener("mouseup", onmouseup);
-      container.removeEventListener("mousemove", onmousemove);
-      container.removeEventListener("mouseleave", onmouseup);
+    return () => {
+      box.removeEventListener("mousedown", handleMouseDown);
+      box.removeEventListener("mouseup", handleMouseUp);
+      container.removeEventListener("mousemove", handleMouseMove);
+      container.removeEventListener("mouseleave", handleMouseUp);
     };
-
-    return cleanup;
   }, []);
 
   return (
-    <div ref={containerref} className="relative w-screen h-screen">
-      <div ref={boxref} className="absolute cursor-pointer border-t-[20px] rounded-t-xl">
+    <div ref={absoluteRef} className="relative w-screen h-screen">
+      <div ref={relativeRef} className="absolute cursor-pointer border-t-[20px] rounded-t-xl">
         {children}
       </div>
     </div>
