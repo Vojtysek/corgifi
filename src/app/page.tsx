@@ -1,6 +1,11 @@
 import Image from "next/image";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { fab } from "@fortawesome/free-brands-svg-icons";
 import { Drag } from "../components/Draggable";
-import Scenes from "@/components/Scenes/Scenes";
+import Scenes from "../components/Scenes/Scenes";
+import { Mixer } from "../components/Mixer";
+
+library.add(fab);
 
 export default function Home() {
   return (
@@ -15,6 +20,9 @@ export default function Home() {
             <Scenes />
           </Drag>
         </div>
+        <Drag>
+            <Mixer />
+        </Drag>
       </main>
     </>
   );
