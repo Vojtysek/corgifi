@@ -14,6 +14,7 @@ const Scenes = () => {
 
   return (
     <Drag name="Scenes" closable={true}>
+      <div className="flex flex-col pr-5 h-[450px] overflow-y-scroll">
       {List.map((scene: ListProps) => {
         return (
           <div onClick={() => handleSelectScene(scene)}>
@@ -24,11 +25,12 @@ const Scenes = () => {
               height={200}
               alt={scene.name}
               key={scene.name}
-            />
+              />
             <p className="text-[#ffa74f] tracking-[5px] ">{scene.name}</p>
           </div>
         );
       })}
+      </div>
     </Drag>
   );
 };

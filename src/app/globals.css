@@ -6,3 +6,12 @@
 *{
     font-family: 'Montserrat', sans-serif;
 }
+
+::-webkit-scrollbar{
+    width: 2px;
+    background: #c08d00;
+}
+
+::-webkit-scrollbar-thumb{
+    background: #ffbb00;
+}

@@ -15,13 +15,31 @@ export const List: ListProps[] = [
   {
     name: "Corner",
     daySrc: "/corner.jpg",
-    nightSrc: "/cornerN.jpeg",
+    nightSrc: "/corner.jpeg",
     cycle: "day",
   },
   {
-    name: "Hentai Room",
+    name: "Jungle",
+    daySrc: "/jungle.jpeg",
+    nightSrc: "/jungle.jpeg",
+    cycle: "day",
+  },
+  {
+    name: "Coffee Shop",
     daySrc: "/coffee.jpeg",
     nightSrc: "/coffee.jpeg",
+    cycle: "day",
+  },
+  {
+    name: "Corner",
+    daySrc: "/corner.jpg",
+    nightSrc: "/corner.jpeg",
+    cycle: "day",
+  },
+  {
+    name: "Jungle",
+    daySrc: "/jungle.jpeg",
+    nightSrc: "/jungle.jpeg",
     cycle: "day",
   },
 ];
