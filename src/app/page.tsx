@@ -1,19 +1,29 @@
 "use client";
 import MenuBar from "@/components/MenuBar";
-import { MyContextProvider } from "@/components/Provider";
-import { useMyContext } from "@/components/Provider";
+import { MenuProvider } from "@/components/Manager/Provider/MenuProvider";
+import { useMenuContext } from "@/components/Manager/Provider/MenuProvider";
+import { useImageContext } from "@/components/Manager/Provider/ImageProvider";
 import { Menus } from "@/components/Data/Menus";
+import Image from "next/image";
 
 const Inner = () => {
-  const { map, setMapValue } = useMyContext();
+  const { menu: map } = useMenuContext();
+  const { image: image } = useImageContext();
 
   return (
-    <main className="bg-black/[0.7] w-screen h-screen text-white">
+    <main className="bg-black/[0.7] w-screen h-screen overflow-hidden text-white">
       {/* <video autoPlay muted loop className="relative opacity-50 h-screen w-screen ">
           <source src="/monke.mp4" type="video/mp4" />
         </video> */}
 
-      <div className="absolute top-0 left-0 w-screen h-screen">
+      <Image
+        src={image.get("Scene")}
+        alt="Picture of the author"
+        fill
+        className="relative opacity-50 h-screen w-screen"
+      />
+
+      <div className="relative top-0 left-0 w-screen h-screen">
         <MenuBar />
         {Menus.map((menu) => {
           if (map.get(menu.name) === true) {
@@ -28,9 +38,9 @@ const Inner = () => {
 export default function Home() {
   return (
     <>
-      <MyContextProvider>
+      <MenuProvider>
         <Inner />
-      </MyContextProvider>
+      </MenuProvider>
     </>
   );
 }

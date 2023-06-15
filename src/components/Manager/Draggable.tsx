@@ -2,7 +2,7 @@
 
 import Draggable from "react-draggable";
 import { useRef } from "react";
-import { useMyContext } from "./Provider";
+import { useMenuContext } from "./Provider/MenuProvider";
 
 interface DragProps {
   closable?: boolean;
@@ -12,7 +12,7 @@ interface DragProps {
 
 export const Drag: React.FC<DragProps> = ({ closable, name, children }) => {
   const dragRef = useRef<HTMLDivElement>(null);
-  const { map, setMapValue } = useMyContext();
+  const { menu: map, setMenuValue: setMapValue } = useMenuContext();
 
   const handleCloseDrag = () => {
     map.get(name) === true ? setMapValue(name, false) : setMapValue(name, true);
@@ -21,14 +21,14 @@ export const Drag: React.FC<DragProps> = ({ closable, name, children }) => {
   return (
     <Draggable
       defaultPosition={{
-        x: 150,
-        y: 200,
+        x: 200,
+        y: 0,
       }}
     >
       {closable === true ? (
         <div
           ref={dragRef}
-          className="flex flex-col p-4 gap-4 bg-black/[.6] border-2 w-fit border-[#ffa74f] rounded-xl"
+          className="flex flex-col p-4 gap-4 bg-black/[.6] border-2 absolute w-fit border-[#ffa74f] rounded-xl"
         >
           <div className="h-2" />
           <div

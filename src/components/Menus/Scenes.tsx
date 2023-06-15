@@ -1,13 +1,17 @@
 "use client";
 
 import Image from "next/image";
-import { List, ListProps } from "./Data/Scenes";
+import { List, ListProps } from "../Data/Scenes";
 import { useRef } from "react";
-import { Drag } from "./Draggable";
+import { Drag } from "../Manager/Draggable";
+import { useImageContext } from "../Manager/Provider/ImageProvider";
 
 const Scenes = () => {
+
+  const { setImageValue } = useImageContext();
+
   const handleSelectScene = (scene: ListProps) => {
-    
+    setImageValue("Scene", scene.daySrc);
   };
 
   const scenesBoxRef = useRef<HTMLDivElement>(null);

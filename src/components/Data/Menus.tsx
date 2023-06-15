@@ -1,7 +1,7 @@
 import { MenuProps } from "../MenuBar";
 import { FaCompass, FaMusic } from "react-icons/fa";
-import Scenes from "../Scenes";
-import Mixer from "../Mixer";
+import Scenes from "../Menus/Scenes";
+import Mixer from "../Menus/Mixer";
 
 export const Menus: MenuProps[] = [
   {

@@ -1,8 +1,8 @@
 "use client";
 
-import { Drag } from "../components/Draggable";
+import { Drag } from "./Manager/Draggable";
 import { Menus } from "./Data/Menus";
-import { useMyContext } from "./Provider";
+import { useMenuContext } from "./Manager/Provider/MenuProvider";
 
 export interface MenuProps {
   name: string;
@@ -11,7 +11,7 @@ export interface MenuProps {
 }
 
 const MenuBar = () => {
-  const { map, setMapValue } = useMyContext();
+  const { menu: map, setMenuValue: setMapValue } = useMenuContext();
 
   const handleOpenMenu = (menu: MenuProps): void => {
     if (map.get(menu.name) === true) {
