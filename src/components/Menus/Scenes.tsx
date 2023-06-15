@@ -6,8 +6,7 @@ import { Drag } from "../Manager/Draggable";
 import { useImageContext } from "../Manager/Provider/ImageProvider";
 
 const Scenes = () => {
-  let { image, setImageValue } = useImageContext();
-  console.log(image);
+  const { setImageValue } = useImageContext();
 
   const handleSelectScene = (scene: ListProps) => {
     setImageValue(scene.daySrc);

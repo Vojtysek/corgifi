@@ -2,15 +2,16 @@
 import MenuBar from "@/components/MenuBar";
 import { MenuProvider } from "@/components/Manager/Provider/MenuProvider";
 import { useMenuContext } from "@/components/Manager/Provider/MenuProvider";
-import { useImageContext } from "@/components/Manager/Provider/ImageProvider";
+import {
+  ImageProvider,
+  useImageContext,
+} from "@/components/Manager/Provider/ImageProvider";
 import { Menus } from "@/components/Data/Menus";
 import Image from "next/image";
 
 const Inner = () => {
   const { menu: map } = useMenuContext();
-  const { image } = useImageContext();
-
-  console.log(image);
+  const { image: source } = useImageContext();
 
   return (
     <main className="bg-black/[0.7] w-screen h-screen overflow-hidden text-white">
@@ -19,11 +20,11 @@ const Inner = () => {
         </video> */}
 
       <Image
-          src={image}
-          alt="Picture of the author"
-          fill
-          className="relative opacity-50 h-screen w-screen"
-        />
+        src={source}
+        alt="Picture of the author"
+        fill
+        className="relative opacity-50 h-screen w-screen"
+      />
 
       <div className="relative top-0 left-0 w-screen h-screen">
         <MenuBar />
@@ -41,7 +42,9 @@ export default function Home() {
   return (
     <>
       <MenuProvider>
-        <Inner />
+        <ImageProvider>
+          <Inner />
+        </ImageProvider>
       </MenuProvider>
     </>
   );
