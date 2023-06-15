@@ -3,8 +3,8 @@
 import React, { createContext, useState, useContext } from "react";
 
 interface ImageType {
-  image: Map<string, string>;
-  setImageValue: (key: string, value: string) => void;
+  image: string;
+  setImageValue: (value: string) => void;
 }
 
 interface ImageProviderProps {
@@ -12,31 +12,29 @@ interface ImageProviderProps {
 }
 
 export const Image = createContext<ImageType>({
-  image: new Map(),
+  image: "",
   setImageValue: () => {},
 });
 
 export const ImageProvider: React.FC<ImageProviderProps> = ({ children }) => {
-  const [image, setImage] = useState<Map<string, string>>(new Map());
+  const [image, setImage] = useState<string>("");
 
-  const setImageValue = (key: string, value: string) => {
-    const newImage = new Map(image);
-    newImage.set(key, value);
-    setImage(newImage);
+  const setImageValue = (value: string) => {
+    setImage(value);
   };
 
-  const imageValue: ImageType = {
-    image: image,
-    setImageValue: setImageValue,
+  const imageValue: any = {
+    image,
+    setImageValue,
   };
 
   return <Image.Provider value={imageValue}>{children}</Image.Provider>;
 };
 
 export const useImageContext = () => {
-  const image = useContext(Image);
-  if (!image) {
+  const { image, setImageValue } = useContext(Image);
+  if (!{image, setImageValue}) {
     throw new Error("useMyContext must be used within a MyContextProvider");
   }
-  return image;
+  return { image, setImageValue };
 };

@@ -2,22 +2,15 @@
 
 import Image from "next/image";
 import { List, ListProps } from "../Data/Scenes";
-import { useRef } from "react";
 import { Drag } from "../Manager/Draggable";
 import { useImageContext } from "../Manager/Provider/ImageProvider";
 
 const Scenes = () => {
-
-  const { setImageValue } = useImageContext();
+  let { image, setImageValue } = useImageContext();
+  console.log(image);
 
   const handleSelectScene = (scene: ListProps) => {
-    setImageValue("Scene", scene.daySrc);
-  };
-
-  const scenesBoxRef = useRef<HTMLDivElement>(null);
-
-  const handleCloseScenes = () => {
-    scenesBoxRef.current?.remove();
+    setImageValue(scene.daySrc);
   };
 
   return (
