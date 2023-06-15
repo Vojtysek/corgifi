@@ -24,13 +24,15 @@ export const Drag: React.FC<DragProps> = ({ closable, name, children }) => {
         x: 200,
         y: 0,
       }}
+      bounds="parent"
+      handle=".handle"
     >
       {closable === true ? (
         <div
           ref={dragRef}
-          className="flex flex-col p-4 gap-4 bg-black/[.6] border-2 absolute w-fit border-[#ffa74f] rounded-xl"
+          className="flex flex-col p-4 gap-2 bg-black/[.6] border-2 absolute w-fit border-[#ffa74f] rounded-xl"
         >
-          <div className="h-2" />
+          <div className="handle h-8 cursor-move" />
           <div
             onClick={handleCloseDrag}
             className="text-[#ffa74f] p-2 absolute -top-2 cursor-pointer right-3 text-xl"

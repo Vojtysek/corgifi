@@ -26,15 +26,13 @@ const Mixer: React.FC = () => {
           />
         </div>
         <div className="flex flex-col items-center justify-center w-11/12 h-3/6 flex-1 border-2 border-black rounded-xl z-[1]">
-          <h3>SOUND FROM YOUR ASS</h3>
           <input
-            type="range"
-            name="volume"
-            min="0"
-            max="100"
-            value="0"
-            className="w-[180px]"
-          />
+              type="range"
+              id="volume"
+              name="volume"
+              min="0"
+              max="11" />
+          <label htmlFor="volume">Volume</label>
         </div>
       </main>
     </Drag>
