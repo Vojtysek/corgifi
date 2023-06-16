@@ -35,3 +35,15 @@ const Mixer: React.FC = () => {
 };
 
 export default Mixer;
+
+/* 
+
+Rain - https://www.youtube.com/watch?v=JbJ0sYt9Nyk
+
+City traffic - https://www.youtube.com/watch?v=8s5H76F3SIs
+
+Campfire - https://www.youtube.com/watch?v=qsOUv9EzKsg
+
+Birds - https://www.youtube.com/watch?v=2G8LAiHSCAs
+
+ */

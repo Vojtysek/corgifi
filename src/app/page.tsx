@@ -11,7 +11,7 @@ import Image from "next/image";
 
 const Inner = () => {
   const { menu: map } = useMenuContext();
-  const { image: source } = useImageContext();
+  const { image: source } = useImageContext()
 
   return (
     <main className="bg-black/[0.7] w-screen h-screen overflow-hidden text-white">

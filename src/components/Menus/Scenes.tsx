@@ -14,22 +14,22 @@ const Scenes = () => {
 
   return (
     <Drag name="Scenes" closable={true}>
-      <div className="flex flex-col pr-5 h-[450px] overflow-y-scroll">
-      {List.map((scene: ListProps) => {
-        return (
-          <div onClick={() => handleSelectScene(scene)}>
-            <Image
-              className="pointer-events-none rounded-md flex"
-              src={scene.daySrc}
-              width={200}
-              height={200}
-              alt={scene.name}
-              key={scene.name}
+      <div className="flex flex-col pr-5 h-[450px] gap-6 overflow-y-scroll">
+        {List.map((scene: ListProps) => {
+          return (
+            <div onClick={() => handleSelectScene(scene)}>
+              <Image
+                className="pointer-events-none rounded-md flex"
+                src={scene.daySrc}
+                width={200}
+                height={200}
+                alt={scene.name}
+                key={scene.name}
               />
-            <p className="text-[#ffa74f] tracking-[5px] ">{scene.name}</p>
-          </div>
-        );
-      })}
+              <p className="text-[#ffa74f] tracking-[5px] mt-2">{scene.name}</p>
+            </div>
+          );
+        })}
       </div>
     </Drag>
   );
