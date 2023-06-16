@@ -21,8 +21,8 @@ export const Drag: React.FC<DragProps> = ({ closable, name, children }) => {
   return (
     <Draggable
       defaultPosition={{
-        x: 200,
-        y: 0,
+        x: 600,
+        y: 200,
       }}
       bounds="parent"
       handle=".handle"
@@ -44,7 +44,7 @@ export const Drag: React.FC<DragProps> = ({ closable, name, children }) => {
       ) : (
         <div
           ref={dragRef}
-          className="flex flex-col p-4 pl-5 h-max gap-4 absolute right-[300px] top-[440px] bg-black/[.6] border-2 w-max border-[#ffa74f] rounded-xl"
+          className="flex flex-col p-4 pl-5 h-max gap-4 absolute right-[650px] top-[150px] bg-black/[.6] border-2 w-max border-[#ffa74f] rounded-xl"
         >
           {children}
         </div>
